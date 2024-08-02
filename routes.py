@@ -11,9 +11,15 @@ def init_route(app):
     def registrar():
         nome = request.form['nome']
         email = request.form['email']
+        tel = request.form['empresa']
+        empresa = request.form['tel']
         senha = request.form['senha']
-        users = User(nome, email, senha)
+        users = User(nome=nome, email=email, empresa=empresa, tel=tel, senha=senha)
         db.session.add(users)
         db.session.commit()
 
-        return 'Dados atualizados com sucesso'
+        return 'Dados registrados com sucesso'
+    
+    @app.route('/busca', methods=['GET'])
+    def buscar_dados():
+        db.Query.session.get()
